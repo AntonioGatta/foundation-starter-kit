@@ -1,0 +1,47 @@
+{
+  "name": "foundation-starter-kit",
+  "version": "0.0.1",
+  "devDependencies": {
+    "node-sass": "~0.9.3",
+    "grunt": "~0.4.1",
+    "grunt-contrib-watch": "~0.5.3",
+    "grunt-sass": "~0.8.1",
+    "grunt-libsass": "~0.2.0",
+    "grunt-contrib-concat": "~0.5.0",
+    "grunt-contrib-connect": "~0.8.0",
+    "grunt-contrib-copy": "~0.7.0"
+  },
+  "description": "This is a template to start your own project that uses Grunt, libsass and Foundation!",
+  "main": "Gruntfile.js",
+  "dependencies": {
+    "grunt": "~0.4.5",
+    "grunt-contrib-concat": "~0.5.0",
+    "grunt-contrib-connect": "~0.8.0",
+    "grunt-contrib-watch": "~0.5.3",
+    "grunt-libsass": "~0.2.0",
+    "grunt-sass": "~0.8.1",
+    "node-sass": "~0.9.6"
+  },
+  "scripts": {
+    "test": "build"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/zurb/foundation-libsass-template.git"
+  },
+  "keywords": [
+    "libsass",
+    "sass",
+    "foundation",
+    "foundation5",
+    "connect",
+    "livereload",
+    "jquery"
+  ],
+  "author": "Antonio Gatta",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/zurb/foundation-libsass-template/issues"
+  },
+  "homepage": "https://github.com/zurb/foundation-libsass-template"
+}
