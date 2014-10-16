@@ -1,10 +1,10 @@
 module.exports = function(grunt) {
-	
+
 	var config = {
-			dist: 'dist',
-			scripts: 'js',
-			images: 'img',
-			styles: 'css'
+		dist: 'dist',
+		scripts: 'js',
+		images: 'img',
+		styles: 'css'
 	};
 
 	grunt.initConfig({
@@ -21,6 +21,16 @@ module.exports = function(grunt) {
 				src: ['**/*.scss', '!**/_*.scss'],
 				dest: 'css',
 				ext: '.css'
+			}
+		},
+
+		codekit: {
+			options: {
+				compilePrefixed: false
+			},
+			kit: {
+				src: '*.kit',
+				dest: '.'
 			}
 		},
 
@@ -86,7 +96,7 @@ module.exports = function(grunt) {
 			},
 			plugins: {
 				files: {
-					'js/plugins.min.js' : [
+					'js/plugins.min.js': [
 						'js/plugins/prepend_plugins.js',
 						'js/plugins/!{prepend|append}*.js',
 						'bower_components/jquery/dist/jquery.js',
@@ -102,16 +112,23 @@ module.exports = function(grunt) {
 			options: {
 				livereload: true
 			},
-			grunt: { files: ['Gruntfile.js'] },
+			grunt: {
+				files: ['Gruntfile.js']
+			},
+
+			kit: {
+				files: ['**/*.kit'],
+				tasks: ['codekit']
+			},
 
 			html: {
-				files: [ '**/*.html' ]
+				files: ['**/*.html']
 			},
 
 			jsApp: {
-				files: [ 'js/app.js' ],
+				files: ['js/app.js'],
 				tasks: ['concat:app']
-				
+
 			},
 
 			jsPlugins: {
@@ -120,7 +137,7 @@ module.exports = function(grunt) {
 					'bower_components/fastclick/lib/fastclick.js'
 				],
 				tasks: ['concat:plugins']
-				
+
 			},
 
 			libsass: {
@@ -139,27 +156,27 @@ module.exports = function(grunt) {
 				hostname: '0.0.0.0'
 			},
 			livereload: {
-                options: {
-                    middleware: function(connect) {
-                        return [
-                            connect.static('.'),
-                            connect().use('/bower_components', connect.static('./bower_components')),
-                            connect.static("/")
-                        ];
-                    }
-                }
-            }
+				options: {
+					middleware: function(connect) {
+						return [
+							connect.static('.'),
+							connect().use('/bower_components', connect.static('./bower_components')),
+							connect.static("/")
+						];
+					}
+				}
+			}
 		},
 
 	});
 
 	grunt.loadNpmTasks('grunt-libsass');
-
+	grunt.loadNpmTasks('grunt-codekit');
 	grunt.loadNpmTasks('grunt-contrib-copy');
 	grunt.loadNpmTasks('grunt-contrib-concat');
 	grunt.loadNpmTasks('grunt-contrib-watch');
 	grunt.loadNpmTasks('grunt-contrib-connect');
 
-	grunt.registerTask('build', ['copy', 'libsass', 'concat']);
+	grunt.registerTask('build', ['codekit', 'copy', 'libsass', 'concat']);
 	grunt.registerTask('default', ['build', 'connect:livereload', 'watch']);
 }
